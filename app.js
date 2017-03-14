@@ -4,6 +4,7 @@
  */
 global.CONFIG = require('./config.js');
 global.LOGGER = require('./utils/logger');
+global.RETURNCODE = require('./utils/returnCode');
 var express = require('express')
   , routes = require('./routes');
 var bodyParser = require('body-parser');
