@@ -28,5 +28,10 @@ config.MYSQL = {
     waitForConnections : true,//确定在没有可用的连接并且已达到限制时池的操作。如果为true，池将对连接请求排队并在有可用连接请求时调用它。如果为false，池将立即回调一个错误。默认true
     queueLimit         : 0,//在从getConnection返回错误之前，连接池将排队的最大连接请求数，如果设置为0，则对排队的连接请求数没有限制。默认值为0
 }
+//mongodb配置
+config.MONGODB = {
+    url : 'mongodb://127.0.0.1:27017/blogs',
+}
+
 
 module.exports = config;

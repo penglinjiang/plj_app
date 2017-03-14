@@ -5,19 +5,23 @@
 global.CONFIG = require('./config.js');
 global.LOGGER = require('./utils/logger');
 global.RETURNCODE = require('./utils/returnCode');
+//node_modules
 var express = require('express')
-  , routes = require('./routes');
 var bodyParser = require('body-parser');
 var path = require('path');
 var favicon = require('serve-favicon');
+var ejs = require('ejs');
 
 var app = express();
+//project import
 var routesMan = require('./routeManage');
 
 // Configuration
-
+  app.engine('.html', ejs.__express);
+  app.engine('.ejs', ejs.__express);
+  app.set('port', process.env.PORT || 1208);
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
+  app.set('view engine', 'ejs');
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended : true}));
   app.use(express.static(path.join(__dirname, 'public')))
@@ -28,6 +32,6 @@ var routesMan = require('./routeManage');
 // Routes 
 routesMan.set(app);
 
-app.listen(1208, function(){
-  LOGGER.info("Express server listening on port %d", 1208);
+app.listen(app.get('port'), function(){
+  LOGGER.info("Blogs server listening on port %d", app.get('port'));
 });
